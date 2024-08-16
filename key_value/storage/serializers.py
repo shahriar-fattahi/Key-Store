@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from rest_framework import serializers
 
 from .models import Storage
@@ -35,3 +36,15 @@ class SetKeySerializer(serializers.ModelSerializer):
         }
         filtered_dict = {k: data[k] for k in keys_to_keep if k in data}
         return filtered_dict
+
+
+class GetKeyValueSerializer(serializers.BaseSerializer):
+    def to_representation(self, instance):
+        if not isinstance(instance, QuerySet):
+            return {instance.data["key"]: instance.data["value"]}
+
+        OUTPUT = dict()
+        for storage in instance:
+            OUTPUT[storage.id] = {storage.data["key"]: storage.data["value"]}
+
+        return OUTPUT
