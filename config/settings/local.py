@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from .base import *
 from .base import INSTALLED_APPS, MIDDLEWARE, env
 
@@ -40,3 +42,8 @@ DEBUG_TOOLBAR_CONFIG = {
 # django-extensions
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["django_extensions"]
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
+}

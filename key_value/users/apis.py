@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -28,4 +29,29 @@ class RegisterApi(APIView):
         return Response(
             data=response_data,
             status=status.HTTP_200_OK,
+        )
+
+
+class ProfileApi(APIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def get(self, request):
+        serializer = UserSerializer(instance=request.user)
+        return Response(
+            data=serializer.data,
+            status=status.HTTP_200_OK,
+        )
+
+    def post(self, request):
+        serializer = RegisterUserSerializer(
+            instance=request.user, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        response_data = {"message": "your profile updated sucessfully."}
+        return Response(
+            data=response_data,
+            status=status.HTTP_202_ACCEPTED,
         )
