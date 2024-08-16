@@ -10,10 +10,8 @@ services:
     container_name: key_value_local_postgres
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_DB=key_value
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - ./.envs/.local/.postgres
     volumes:
       - key_value_local_postgres_data:/var/lib/postgresql/data
       - key_value_local_postgres_data_backups:/backups
