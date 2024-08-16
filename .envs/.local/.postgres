@@ -1,7 +1,7 @@
 # PostgreSQL
 # ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=key_value
-POSTGRES_USER=LAaWnpIaUkQRDACLftiNEZnYKOSFcbkE
-POSTGRES_PASSWORD=0AzkHcmHBKtG7Yh9JP02TlcOJEjsmd8Nj4Hds7A0854qaeknOp53UI44kt4kSrk6
+POSTGRES_HOST = postgres
+POSTGRES_PORT = 5432
+POSTGRES_DB = key_value
+POSTGRES_USER = postgres
+POSTGRES_PASSWORD = postgres
