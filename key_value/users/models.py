@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser
-from django.db.models import CharField, EmailField, BooleanField
-from django.urls import reverse
+from django.db.models import BooleanField, CharField
+
+from .managers import UserManager
 
 
 class User(AbstractBaseUser):
@@ -27,5 +28,3 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_admin
-
-    
