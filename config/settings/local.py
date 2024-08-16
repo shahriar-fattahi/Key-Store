@@ -1,8 +1,5 @@
-# ruff: noqa: E501
-from .base import *  # noqa: F403
-from .base import INSTALLED_APPS
-from .base import MIDDLEWARE
-from .base import env
+from .base import *
+from .base import INSTALLED_APPS, MIDDLEWARE, env
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -13,6 +10,10 @@ SECRET_KEY = env(
 )
 
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
+
+# Admin
+# ------------------------------------------------------------------------------
+ADMIN_URL = "/admin/"
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -39,4 +40,3 @@ DEBUG_TOOLBAR_CONFIG = {
 # django-extensions
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += ["django_extensions"]
-

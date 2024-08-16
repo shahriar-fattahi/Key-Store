@@ -1,34 +1,27 @@
 volumes:
   key_value_local_postgres_data: {}
   key_value_local_postgres_data_backups: {}
-  
+  redis-data:
+
 
 services:
-  django:
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
-    image: key_value_local_django
-    container_name: key_value_local_django
-    depends_on:
-      - postgres
-    volumes:
-      - .:/app:z
-    env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.postgres
-    ports:
-      - '8000:8000'
-    command: /start
-
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
-    image: key_value_production_postgres
+    image: postgres:16
     container_name: key_value_local_postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=key_value
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - key_value_local_postgres_data:/var/lib/postgresql/data
       - key_value_local_postgres_data_backups:/backups
-    env_file:
-      - ./.envs/.local/.postgres
+
+  redis:
+    image: redis:7
+    container_name: key_value_local_redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
