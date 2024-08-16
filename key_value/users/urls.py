@@ -1,10 +1,8 @@
 from django.urls import path
 
-from .views import user_detail_view
-from .views import user_redirect_view
-from .views import user_update_view
+from .apis import RegisterApi
 
 app_name = "users"
 urlpatterns = [
-    
+    path("register", view=RegisterApi.as_view(), name="register"),
 ]
