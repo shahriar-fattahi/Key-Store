@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 
 from .models import Storage
 from .serializers import GetKeyValueSerializer, SetKeySerializer
@@ -7,6 +7,13 @@ from .serializers import GetKeyValueSerializer, SetKeySerializer
 
 class SetKeyApi(CreateAPIView):
     serializer_class = SetKeySerializer
+
+
+class GetKeyValueListApi(ListAPIView):
+    serializer_class = GetKeyValueSerializer
+
+    def get_queryset(self):
+        return Storage.objects.all()
 
 
 class GetValueApi(RetrieveAPIView):
