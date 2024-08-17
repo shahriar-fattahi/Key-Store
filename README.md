@@ -1,54 +1,58 @@
 # key value
 
-Behold My Awesome Project!
+A key-value storage API!
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-License: MIT
+## Getting Started
+1. Clone this repository to your local machine:
+```
+git clone https://github.com/shahriar-fattahi/phone-catalog.git
+```
+2- SetUp a Virtual Environment
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+or(for Windows)
+```
+python -m venv venv
+venv/scripts/activate
+```
+3- install Dependencies
+```
+pip install -r requirements/local.txt
+```
+4- run Docker Compose
+```
+docker compose -f docker-compose.local.yml up -d     
+```
 
-## Settings
+5- make migrations
+```
+python manage.py makemigrations
+```
+6- migrate
+```
+python manage.py migrate
+```
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+7- create an admin
+```
+python manage.py createsuperuser
+```
 
-## Basic Commands
+8- run the project
+```
+python manage.py runserver
+```
 
-### Setting Up Your Users
-
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
-
-- To create a **superuser account**, use this command:
-
-      $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
-
-### Type checks
-
-Running type checks with mypy:
-
-    $ mypy key_value
-
-### Test coverage
-
-To run the tests, check your test coverage, and generate an HTML coverage report:
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-#### Running tests with pytest
-
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
-## Deployment
-
-The following details how to deploy this application.
-
-### Docker
-
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+## Create a key-value
+Format for Sending Data to Set Key API:
+```
+{
+    "data":{
+        "key": "keyname",
+        "value": value
+    }
+}
+```
