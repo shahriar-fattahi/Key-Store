@@ -28,7 +28,7 @@ class RegisterApi(APIView):
         }
         return Response(
             data=response_data,
-            status=status.HTTP_200_OK,
+            status=status.HTTP_201_CREATED,
         )
 
 
